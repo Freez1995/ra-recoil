@@ -27,7 +27,6 @@ export const Size: React.FC = () => {
         value={10}
         id='m'
         name='size'
-        checked={selectedSizePrice === 10}
         onChange={handleSizeChange}
       />
       <label htmlFor='l'>L</label>
@@ -36,7 +35,6 @@ export const Size: React.FC = () => {
         value={13}
         id='l'
         name='size'
-        checked={selectedSizePrice === 13}
         onChange={handleSizeChange}
       />
     </section>

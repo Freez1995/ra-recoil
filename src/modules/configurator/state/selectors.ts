@@ -5,7 +5,7 @@ import {
   sizePriceState,
 } from './atoms';
 
-export const totalPriceState = selector<number | string>({
+export const totalPriceState = selector<number>({
   key: 'configurator.total.price',
   get: ({ get }) => {
     const selectedToppings = get(selectedToppingsState);
@@ -16,11 +16,10 @@ export const totalPriceState = selector<number | string>({
     selectedToppings.forEach((topping) => {
       totalPrice += topping.price;
     });
-    let finalPrice: string | number = 0;
-    typeof discountValue === 'number'
-      ? (finalPrice = totalPrice - totalPrice * (discountValue / 100))
-      : (finalPrice = '');
 
-    return finalPrice;
+    typeof discountValue === 'number' &&
+      (totalPrice -= totalPrice * (discountValue / 100));
+
+    return totalPrice;
   },
 });
