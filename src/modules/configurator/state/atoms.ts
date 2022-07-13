@@ -1,17 +1,23 @@
 import { atom } from 'recoil';
 import { ToppingsInfo } from '../types';
 
-export const selectedToppingsState = atom<ToppingsInfo[]>({
+const selectedToppingsState = atom<ToppingsInfo[]>({
   key: 'configurator.selected.toppings',
   default: [],
 });
 
-export const sizePriceState = atom<number>({
+const sizePriceState = atom<number>({
   key: 'configurator.selected.size',
   default: 7,
 });
 
-export const discountValueState = atom<number | undefined>({
+const discountValueState = atom<number>({
   key: 'configurator.discount.value',
-  default: undefined,
+  default: 0,
 });
+
+export const configuratorAtoms = {
+  selectedToppingsState,
+  sizePriceState,
+  discountValueState,
+};

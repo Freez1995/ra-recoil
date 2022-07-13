@@ -1,10 +1,11 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { sizePriceState } from '../state/atoms';
+import { configuratorAtoms } from '../state/atoms';
 
 export const Size: React.FC = () => {
-  const [selectedSizePrice, setselectedSizePrice] =
-    useRecoilState(sizePriceState);
+  const [selectedSizePrice, setselectedSizePrice] = useRecoilState(
+    configuratorAtoms.sizePriceState
+  );
 
   const handleSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setselectedSizePrice(parseInt(e.target.value));

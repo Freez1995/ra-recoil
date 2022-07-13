@@ -1,21 +1,12 @@
 import React from 'react';
 import { ToppingsInfo } from 'modules/configurator';
-import { useRecoilState } from 'recoil';
-import { selectedToppingsState } from '../state';
+import { useHandleToppings } from '../hooks';
 
 export const Topping: React.FC<ToppingsInfo> = ({ name, price }) => {
-  const [selectedToppingsList, setSelectedToppingsList] = useRecoilState(
-    selectedToppingsState
-  );
+  const { handleToppingsChange } = useHandleToppings();
+
   const handleToppingChange = () => {
-    const isToppingFound = selectedToppingsList.some(
-      (topping) => topping.name === name
-    );
-    isToppingFound
-      ? setSelectedToppingsList(
-          selectedToppingsList.filter((topping) => topping.name !== name)
-        )
-      : setSelectedToppingsList([...selectedToppingsList, { name, price }]);
+    handleToppingsChange({ name, price });
   };
 
   return (

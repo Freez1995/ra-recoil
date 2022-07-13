@@ -1,24 +1,19 @@
 import { selector } from 'recoil';
-import {
-  discountValueState,
-  selectedToppingsState,
-  sizePriceState,
-} from './atoms';
+import { configuratorAtoms } from './atoms';
 
 export const totalPriceState = selector<number>({
   key: 'configurator.total.price',
   get: ({ get }) => {
-    const selectedToppings = get(selectedToppingsState);
-    const sizePrice = get(sizePriceState);
-    const discountValue = get(discountValueState);
+    const selectedToppings = get(configuratorAtoms.selectedToppingsState);
+    const sizePrice = get(configuratorAtoms.sizePriceState);
+    const discountValue = get(configuratorAtoms.discountValueState);
 
     let totalPrice = sizePrice;
     selectedToppings.forEach((topping) => {
       totalPrice += topping.price;
     });
 
-    typeof discountValue === 'number' &&
-      (totalPrice -= totalPrice * (discountValue / 100));
+    totalPrice -= totalPrice * (discountValue / 100);
 
     return totalPrice;
   },

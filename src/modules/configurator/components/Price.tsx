@@ -6,7 +6,7 @@ export const Price: React.FC = () => {
   const totalPrice = useRecoilValue(totalPriceState);
   return (
     <section>
-      <p>Total price: ${totalPrice}</p>
+      <p>Total price: ${totalPrice.toPrecision(3)}</p>
     </section>
   );
 };
